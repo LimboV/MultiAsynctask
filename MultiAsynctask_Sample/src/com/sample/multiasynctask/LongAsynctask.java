@@ -1,10 +1,27 @@
-# MultiAsynctask
-相当于Asynctak，但是核心是不同的。系统的AsyncTask在不同版本的API的并发策略是不同的，在Android4.0以上只能运行一个Asynctask。Multiasynctask可以同时10个或更多的子线程做的事情。
-Equivalent to Asynctak, but the difference is that. The Asynctask of the system is different in different versions of the API concurrency strategy. MultiAsynctask can simultaneously 10 or more of the sub thread to do things.   
+/**
+ * Copyright © YOLANDA. All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.sample.multiasynctask;
 
-使用方式如下，基本和系统API相同：
-The use of the following ways, the same as the system API:
-```
+import com.yolanda.multiasynctask.MultiAsynctask;
+
+/**
+ * Created in Aug 3, 2015 2:17:26 PM
+ * 
+ * @author YOLANDA
+ */
 public class LongAsynctask extends MultiAsynctask<Paramer, Updater, Resulter> {
 
 	@Override
@@ -34,4 +51,3 @@ public class LongAsynctask extends MultiAsynctask<Paramer, Updater, Resulter> {
 		Logger.i("onResult打印：" + "what:" + result.getWhat() + ";value:" + result.getValue());
 	}
 }
-```
