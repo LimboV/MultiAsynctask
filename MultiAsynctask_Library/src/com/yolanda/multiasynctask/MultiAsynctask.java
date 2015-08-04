@@ -78,6 +78,7 @@ public abstract class MultiAsynctask<Param, Update, Result> {
 	 *        {@link #onTask(Object...)} method.
 	 */
 	public final void execute(Param... params) {
+		onPrepare();
 		TaskExecutor taskExecutor = new TaskExecutor(this, params);
 		MAIN_THREAD_POOL_EXECUTOR.execute(taskExecutor);
 	}
@@ -89,17 +90,15 @@ public abstract class MultiAsynctask<Param, Update, Result> {
 	 *
 	 * @see #execute(Object[])
 	 */
-	public void execute(Runnable runnable) {
+	public final void execute(Runnable runnable) {
 		MAIN_THREAD_POOL_EXECUTOR.execute(runnable);
 	}
 
 	/**
-	 * Pearson my class to override this method, you can receive a value of {@link #postUpdate(Object)} update.<br/>
-	 * This method is executed in the main thread
-	 * 
-	 * @param update You send out the update values from the {@link #postReult(Object)} method.
+	 * Before executing the child thread is called, you can now some <code>Dialog</code>
 	 */
-	public void onUpdate(Update update) {
+	public void onPrepare() {
+
 	}
 
 	/**
@@ -110,6 +109,15 @@ public abstract class MultiAsynctask<Param, Update, Result> {
 	 * @return
 	 */
 	public abstract Result onTask(Param... params);
+
+	/**
+	 * Pearson my class to override this method, you can receive a value of {@link #postUpdate(Object)} update.<br/>
+	 * This method is executed in the main thread
+	 * 
+	 * @param update You send out the update values from the {@link #postReult(Object)} method.
+	 */
+	public void onUpdate(Update update) {
+	}
 
 	/**
 	 * Pearson my class to override this method, you can receive a value of {@link #onTask(Object...)} return.</br>
